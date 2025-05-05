@@ -6,7 +6,7 @@
     <div class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between px-6 pt-14 pb-6 md:py-20">
         <div class="md:w-1/2 lg:w-5/12 animate-fadeInLeft">
             <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-8 leading-tight">Darmowy kreator ankiet</h1>
-            <a href="#" class="inline-block bg-violet-700 hover:bg-violet-800 text-white text-lg px-8 py-4 rounded-lg font-bold shadow transition transform hover:scale-105 animate-bounce-slow">Utwórz ankietę</a>
+            <a href="{{url('/dashboard')}}" class="inline-block bg-violet-700 hover:bg-violet-800 text-white text-lg px-8 py-4 rounded-lg font-bold shadow transition transform hover:scale-105 animate-bounce-slow">Utwórz ankietę</a>
         </div>
         <div class="md:w-1/2 lg:w-7/12 flex justify-center mb-10 md:mb-0 animate-fadeInRight">
             <img class="w-[340px] md:w-[400px] rounded-3xl shadow-lg transition-transform duration-300 hover:scale-105" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="Laptop" />

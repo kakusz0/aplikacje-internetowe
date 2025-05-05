@@ -24,13 +24,13 @@
             <div class="flex justify-between h-16">
                 <!-- Logo -->
                 @if (Route::currentRouteName() !== 'dashboard')
-                    <div class="flex-shrink-0 flex items-center">
-                        <span class="text-violet-700 text-2xl font-bold font-mono">Pollify</span>
-                    </div>
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="/" class="text-violet-700 text-2xl font-bold font-mono">Pollify</a>
+                </div>
                 @else
-                    <div class="flex-shrink-0 flex items-center">
-                        <span class="text-violet-700 text-2xl font-bold font-mono">Pollify</span>
-                    </div>
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="/" class="text-violet-700 text-2xl font-bold font-mono">Pollify</a>
+                </div>
                 @endif
                 <!-- Desktop Auth Buttons -->
                 <!-- w layouts/app.blade.php, część headera-->
