@@ -6,13 +6,14 @@
     <!-- Sidebar -->
     <nav class="w-36 bg-gradient-to-b from-violet-700 to-violet-900 text-white flex flex-col items-center py-10 shadow-lg">
         <!-- Home: Statystyki -->
-        <a href="#" title="Strona główna" class="flex flex-col items-center mb-8 hover:bg-violet-800 rounded-lg p-3 transition">
+        <a href="{{ url('/') }}" title="Strona główna" class="flex flex-col items-center mb-8 hover:bg-violet-800 rounded-lg p-3 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M3 11.25L12 4l9 7.25M4.5 10.75V19a1 1 0 001 1h3.5a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3.5a1 1 0 001-1V10.75"/>
             </svg>
             <span class="text-xs font-medium">Strona główna</span>
         </a>
+
         <!-- Kreator nowej ankiety -->
         <a href="#" title="Nowa ankieta" class="flex flex-col items-center mb-8 hover:bg-green-600 rounded-lg p-3 transition">
             <svg class="w-8 h-8 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

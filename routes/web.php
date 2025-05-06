@@ -32,7 +32,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 use Illuminate\Support\Facades\Auth;
 
 
-Route::middleware(['auth'])->group(function() {
+Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         $user = Auth::user();
         // (opcjonalnie załaduj relacje, jeśli trzeba)
@@ -40,4 +40,3 @@ Route::middleware(['auth'])->group(function() {
         return view('dashboard', compact('user'));
     })->name('dashboard');
 });
-

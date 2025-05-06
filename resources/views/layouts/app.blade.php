@@ -13,35 +13,29 @@
 
     <!-- NAVBAR (RESPONSYWNY Z BURGER MENU) -->
     <nav x-data="{ open: false }" class="bg-white shadow-sm relative z-20">
-        <div class="
-    
-    @if(Route::currentRouteName() === 'dashboard')
-    max-w-8xl pl-0 px-4 sm:px-6 lg:px-2
+        <div
+            class="
+
+    @if (Route::currentRouteName() === 'dashboard') max-w-8xl pl-0 px-4 sm:px-6 lg:px-2
     @else
-    max-w-7xl mx-auto px-4 sm:px-6 lg:px-8
-    @endif
+    max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 @endif
 ">
             <div class="flex justify-between h-16">
+
+
                 <!-- Logo -->
-                @if (Route::currentRouteName() !== 'dashboard')
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="/" class="text-violet-700 text-2xl font-bold font-mono">Pollify</a>
+                <div class="flex-shrink-0 flex items-center ml-4">
+                    <a href="/" class="text-violet-700 text-2xl font-bold font-mono ml-1">Pollify</a>
                 </div>
-                @else
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="/" class="text-violet-700 text-2xl font-bold font-mono">Pollify</a>
-                </div>
-                @endif
+
+
                 <!-- Desktop Auth Buttons -->
-                <!-- w layouts/app.blade.php, część headera-->
-                <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-4">
                     @auth
-                        @if (Route::currentRouteName() !== 'dashboard')
-                            <a href="{{ route('dashboard') }}"
-                                class="text-violet-700 font-bold px-4 py-2 rounded hover:bg-violet-100 transition">
-                                Panel ankiet
-                            </a>
-                        @endif
+                        <a href="{{ route('dashboard') }}"
+                            class="text-violet-700 font-bold px-4 py-2 rounded hover:bg-violet-100 transition">
+                            Panel ankiet
+                        </a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit"
@@ -56,24 +50,20 @@
                             class="px-4 py-2 bg-violet-700 text-white rounded font-semibold hover:bg-violet-800 transition">Zarejestruj</a>
                     @endauth
                 </div>
-                @if (Route::currentRouteName() !== 'dashboard')
-                    <!-- Burger -->
-                    <div class="flex md:hidden">
-                        <button @click="open = !open" type="button"
-                            class="inline-flex items-center justify-center p-2 rounded-md text-violet-700 hover:bg-violet-50 transition">
-                            <svg x-show="!open" class="h-6 w-6" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                            <svg x-show="open" class="h-6 w-6" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-                @endif
+                <!-- Burger -->
+                <div class="flex md:hidden">
+                    <button @click="open = !open" type="button"
+                        class="inline-flex items-center justify-center p-2 rounded-md text-violet-700 hover:bg-violet-50 transition">
+                        <svg x-show="!open" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg x-show="open" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
         <!-- Mobile Auth Buttons -->
@@ -85,6 +75,13 @@
                     <a href="{{ route('register') }}"
                         class="block bg-violet-700 text-white rounded px-4 py-2 text-center font-semibold hover:bg-violet-800 transition">Zarejestruj</a>
                 @else
+                    @if (Route::currentRouteName() !== 'dashboard')
+                        <a href="{{ route('dashboard') }}"
+                            class="w-full bg-violet-700 text-white rounded px-4 py-2 text-center font-semibold hover:bg-violet-800 transition">
+                            Panel ankiet
+                        </a>
+                    @endif
+
                     <form action="{{ route('logout') }}" method="POST" class="block">
                         @csrf
                         <button type="submit"
