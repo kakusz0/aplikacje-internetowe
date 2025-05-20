@@ -1,0 +1,54 @@
+        @if($survey->is_named)
+        <p class="text-red-600">DEBUG: is_named=1 – wyświetlam dropdown</p>
+        @else
+        <p class="text-red-600">DEBUG: is_named=0 – ukrywam dropdown</p>
+        @endif
+        <pre>
+        Respondenci: {{ isset($respondents) ? $respondents->count() : 'null' }}
+        </pre>
+        @if($survey->is_named&&!empty($respondents))
+            <div class="mt-10">
+                <h3 class="text-lg font-semibold text-gray-700 mb-3">Odpowiedzi imienne</h3>
+
+                <form method="GET" class="mb-4 flex items-center gap-2">
+                    <input type="text" name="search" value="{{ request('search') }}"
+                        placeholder="Szukaj po imieniu lub nazwisku" class="border rounded px-2 py-1">
+                    <button class="bg-violet-600 text-white px-3 py-1 rounded" type="submit">Szukaj</button>
+                </form>
+
+                <select id="respondent-dropdown" class="w-full border rounded px-3 py-2 mb-4"
+                    onchange="showRespondent(this.value)">
+                    <option value="">Wybierz osobę…</option>
+                    @foreach ($respondents as $resp)
+                        <option value="resp-{{ $resp->id }}">
+                            {{ $resp->user->name }} {{ $resp->user->last_name ?? '' }}
+                        </option>
+                    @endforeach
+                </select>
+
+                @foreach ($respondents as $resp)
+                    <div id="resp-{{ $resp->id }}" class="respondent-details hidden text-left mb-4">
+                        <div class="font-semibold">
+                            {{ $resp->user->name }} {{ $resp->user->last_name ?? '' }}
+                            <span class="text-gray-500 text-sm">(ID: {{ $resp->user->id }})</span>
+                        </div>
+                        <ul class="list-disc ml-4">
+                            @foreach ($resp->answers as $ans)
+                                @foreach ($ans->answerOptions as $ao)
+                                    <li>{{ $ao->option->option_text }}</li>
+                                @endforeach
+                            @endforeach
+                        </ul>
+                    </div>
+                @endforeach
+
+                {{ $respondents->links() }}
+            </div>
+
+            <script>
+                function showRespondent(id) {
+                    document.querySelectorAll('.respondent-details').forEach(el => el.classList.add('hidden'));
+                    if (id) document.getElementById(id).classList.remove('hidden');
+                }
+            </script>
+        @endif

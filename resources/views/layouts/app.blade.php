@@ -13,13 +13,11 @@
 
     <!-- NAVBAR (RESPONSYWNY Z BURGER MENU) -->
     <nav x-data="{ open: false }" class="bg-white shadow-sm relative z-20">
+        @php
+            $isDashboardOrSurveys = request()->routeIs('dashboard') || request()->routeIs('surveys.*');
+        @endphp
         <div
-            class="
-
-    @if (Route::currentRouteName() === 'dashboard') max-w-8xl pl-0 px-4 sm:px-6 lg:px-2
-    @else
-    max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 @endif
-">
+            class="{{ $isDashboardOrSurveys ? 'max-w-8xl pl-0 px-4 sm:px-6 lg:px-2' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8' }}">
             <div class="flex justify-between h-16">
 
 

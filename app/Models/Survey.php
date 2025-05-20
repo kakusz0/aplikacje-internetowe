@@ -2,34 +2,58 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Survey extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'user_id',
+        'uuid',
         'title',
         'description',
         'is_public',
         'is_named',
-        'expires_at',
+        'expires_at'
     ];
 
-    // Relacja: autor ankiety
+    protected $casts = [
+        'is_public' => 'boolean',
+        'is_named' => 'boolean',
+        'expires_at' => 'datetime'
+    ];
+
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($survey) {
+            if (empty($survey->uuid)) {
+                $survey->uuid = (string) Str::uuid();
+            }
+        });
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // Relacja: pytania w ankiecie
     public function questions()
     {
         return $this->hasMany(Question::class);
     }
 
-    // Relacja: odpowiedzi
     public function respondents()
     {
         return $this->hasMany(Respondent::class);
+    }
+
+    // Domyślny klucz do routingów (np. w route model binding)
+    public function getRouteKeyName()
+    {
+        return 'uuid';
     }
 }

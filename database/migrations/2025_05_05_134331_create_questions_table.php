@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('survey_id')->constrained()->onDelete('cascade');
+            $table->foreignId('survey_id')->constrained('surveys')->onDelete('cascade');
             $table->text('question_text');
             $table->enum('question_type', ['single', 'multiple', 'open']);
             $table->integer('question_order')->default(0);

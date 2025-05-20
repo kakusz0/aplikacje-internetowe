@@ -31,7 +31,8 @@ class RegisterController extends Controller
             'first_name' => $validated['first_name'],
             'last_name' => $validated['last_name'],
             'email' => $validated['email'],
-            'password' => bcrypt($validated['password'])
+            'password' => bcrypt($validated['password']),
+            'email_verified_at' => now()
         ]);
 
         // Automatyczne zalogowanie użytkownika po rejestracji

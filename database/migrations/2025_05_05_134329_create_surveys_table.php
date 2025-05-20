@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('surveys', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->uuid('uuid')->unique();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('title');
             $table->text('description')->nullable();
             $table->boolean('is_public')->default(true);
-            $table->boolean('is_named')->default(false); // jeśli ankieta ma być imienna
+            $table->boolean('is_named')->default(false);
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();
         });

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('answer_options', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('answer_id')->constrained()->onDelete('cascade');
-            $table->foreignId('option_id')->constrained()->onDelete('cascade');
+            $table->foreignId('answer_id')->constrained('answers')->onDelete('cascade');
+            $table->foreignId('option_id')->constrained('options')->onDelete('cascade');
             $table->timestamps();
         });
     }

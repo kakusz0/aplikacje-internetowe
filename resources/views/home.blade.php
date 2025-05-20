@@ -9,7 +9,7 @@
             <a href="{{url('/dashboard')}}" class="inline-block bg-violet-700 hover:bg-violet-800 text-white text-lg px-8 py-4 rounded-lg font-bold shadow transition transform hover:scale-105 animate-bounce-slow">Utwórz ankietę</a>
         </div>
         <div class="md:w-1/2 lg:w-7/12 flex justify-center mb-10 md:mb-0 animate-fadeInRight">
-            <img class="w-[340px] md:w-[400px] rounded-3xl shadow-lg transition-transform duration-300 hover:scale-105" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="Laptop" />
+            <img class="w-[340px] md:w-[400px] rounded-3xl shadow-lg transition-transform duration-300 hover:scale-105" src="https://www.si-consulting.pl/sites/default/files/2024-09/Home_260924.png" alt="Laptop" />
         </div>
     </div>
 </section>
@@ -18,20 +18,12 @@
 <section class="w-full bg-white py-12">
     <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-around items-center gap-10 px-3 animate-fadeInUp">
         <div class="flex flex-col items-center text-center group transition">
-            <img class="w-12 h-12 mb-3 group-hover:scale-110 transition-transform" src="https://img.icons8.com/ios-glyphs/48/9147ff/drag-and-drop.png" alt="drag and drop" />
-            <span class="font-semibold">Edytor „przeciągnij i upuść”</span>
-        </div>
-        <div class="flex flex-col items-center text-center group transition">
-            <img class="w-12 h-12 mb-3 group-hover:scale-110 transition-transform" src="https://img.icons8.com/ios-glyphs/48/9147ff/template.png" alt="template" />
-            <span class="font-semibold">Ponad milion szablonów</span>
-        </div>
-        <div class="flex flex-col items-center text-center group transition">
-            <img class="w-12 h-12 mb-3 group-hover:scale-110 transition-transform" src="https://img.icons8.com/ios-glyphs/48/9147ff/ai.png" alt="AI" />
-            <span class="font-semibold">Generator pytań z AI</span>
+            <img class="w-12 h-12 mb-3 group-hover:scale-110 transition-transform" src="https://img.icons8.com/ios-glyphs/48/9147ff/group.png" alt="group work" />
+            <span class="font-semibold">Tworzenie ankiet</span>
         </div>
         <div class="flex flex-col items-center text-center group transition">
             <img class="w-12 h-12 mb-3 group-hover:scale-110 transition-transform" src="https://img.icons8.com/ios-glyphs/48/9147ff/group.png" alt="group work" />
-            <span class="font-semibold">Współpraca z innymi</span>
+            <span class="font-semibold">Możliwość anonimowego głosowania</span>
         </div>
     </div>
 </section>

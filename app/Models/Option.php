@@ -2,23 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Answer extends Model
+class Option extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'respondent_id',
         'question_id',
-        'answer_text'
+        'option_text',
+        'option_order',
     ];
-
-    public function respondent()
-    {
-        return $this->belongsTo(Respondent::class);
-    }
 
     public function question()
     {
