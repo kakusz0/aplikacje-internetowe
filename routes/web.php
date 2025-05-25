@@ -1,5 +1,7 @@
 <?php
 
+app()->setLocale('pl');
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -73,6 +75,7 @@ Route::delete('/surveys/{survey}', [App\Http\Controllers\SurveyController::class
 use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminSurveyController;
+use App\Http\Controllers\Admin\AdminQuestionController;
 
 Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () {
     // Zarządzanie użytkownikami
@@ -96,4 +99,11 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->name('admin.')->gr
     Route::get('/surveys', [AdminSurveyController::class, 'index'])->name('surveys');
     Route::get('/surveys/{survey}/edit', [AdminSurveyController::class, 'edit'])->name('surveys.edit');
     Route::put('/surveys/{survey}', [AdminSurveyController::class, 'update'])->name('surveys.update');
+
+    // Pytania do ankiet (questions)
+    Route::get('/questions/create', [AdminQuestionController::class, 'create'])->name('questions.create');
+    Route::post('/questions', [AdminQuestionController::class, 'store'])->name('questions.store');
+    Route::get('/questions/{question}/edit', [AdminQuestionController::class, 'edit'])->name('questions.edit');
+    Route::put('/questions/{question}', [AdminQuestionController::class, 'update'])->name('questions.update');
+    Route::delete('/questions/{question}', [AdminQuestionController::class, 'destroy'])->name('questions.destroy');
 });

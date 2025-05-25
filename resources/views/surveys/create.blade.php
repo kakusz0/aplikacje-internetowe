@@ -13,11 +13,10 @@
             </div>
         @endif
         <form method="POST" action="{{ route('surveys.store') }}">
-
             @csrf
             <div class="mb-4">
                 <label class="block font-semibold mb-1">Tytuł ankiety (pytanie główne)</label>
-                <input type="text" name="title" class="w-full border px-3 py-2 rounded" required>
+                <input type="text" name="title" class="w-full border px-3 py-2 rounded" aria-label="Tytuł ankiety" required>
             </div>
             <div class="mb-4">
                 <label class="block font-semibold mb-1">Typ odpowiedzi</label>
@@ -30,9 +29,9 @@
                 <label class="block font-bold mb-2">Opcje odpowiedzi</label>
                 <div id="options-list">
                     <input type="text" name="options[]" class="w-full border px-3 py-2 rounded mb-2"
-                        placeholder="Odpowiedź 1" required>
+                        placeholder="Odpowiedź 1" aria-label="Odpowiedź 1" required>
                     <input type="text" name="options[]" class="w-full border px-3 py-2 rounded mb-2"
-                        placeholder="Odpowiedź 2" required>
+                        placeholder="Odpowiedź 2" aria-label="Odpowiedź 2" required>
                 </div>
                 <button type="button" onclick="addOption()" class="bg-violet-700 text-white px-4 py-1 rounded">Dodaj
                     odpowiedź</button>
@@ -54,6 +53,7 @@
             el.name = "options[]";
             el.className = "w-full border px-3 py-2 rounded mb-2";
             el.placeholder = "Kolejna odpowiedź";
+            el.setAttribute('aria-label', 'Pole na kolejną opcję odpowiedzi');
             document.getElementById('options-list').appendChild(el);
         }
     </script>

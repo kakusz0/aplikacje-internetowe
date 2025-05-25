@@ -3,35 +3,51 @@
 @section('content')
     <div class="flex min-h-screen bg-gray-50">
 
-        <!-- Sidebar -->
+
         <nav
             class="w-36 bg-gradient-to-b from-violet-700 to-violet-900 text-white flex flex-col items-center py-10 shadow-lg">
             <a href="{{ url('/') }}" title="Strona główna"
                 class="flex flex-col items-center mb-8 hover:bg-violet-800 rounded-lg p-3 transition">
-                <img src="{{ asset('home.png') }}" alt="Shared Icon" class="w-10 h-10 object-contain" />
+                <img src="{{ asset('home.png') }}" alt="Strona główna" class="w-10 h-10 object-contain" />
                 <span class="text-xs font-medium">Strona główna</span>
             </a>
 
 
             <a href="{{ route('surveys.create') }}"
                 class="flex flex-col items-center mb-8 hover:bg-violet-800 rounded-lg p-3 transition">
-                <img src="{{ asset('survey_created.png') }}" alt="Shared Icon" class="w-10 h-10 object-contain" />
+                <img src="{{ asset('survey_created.png') }}" alt="Stwórz ankietę" class="w-10 h-10 object-contain" />
                 <span class="text-xs font-medium">Stwórz ankietę</span>
             </a>
 
             <a href="{{ route('dashboard') }}"
                 class="flex flex-col items-center mb-8 hover:bg-violet-800 rounded-lg p-3 transition">
-                <img src="{{ asset('panel.png') }}" alt="Shared Icon" class="w-10 h-10 object-contain" />
+                <img src="{{ asset('panel.png') }}" alt="Twój panel" class="w-10 h-10 object-contain" />
                 <span class="text-xs font-medium">Twój panel</span>
             </a>
+
+            @auth
+                @if (auth()->user()->is_admin)
+                    <a href="{{ route('admin.users') }}"
+                        class="flex flex-col items-center mb-8 hover:bg-orange-600 rounded-lg p-3 transition"
+                        title="Panel administracyjny">
+                        <img src="{{ asset('administrator.png') }}" alt="Panel administratora"
+                            class="w-10 h-10 object-contain" />
+
+                        <span class="text-xs font-medium">Panel admina</span>
+                    </a>
+                @endif
+            @endauth
+
             <div class="flex-grow"></div>
+
+
         </nav>
 
-        <!-- Main Content -->
+
         <div class="flex-1 p-4 sm:p-8">
             <h1 class="text-3xl font-bold text-violet-800 mb-7">Wszystkie ankiety</h1>
 
-            <!-- Search Bar -->
+
             <form method="GET" action="{{ route('surveys.index') }}"
                 class="mb-5 flex flex-col sm:flex-row gap-2 max-w-lg">
                 <input type="text" name="q" value="{{ request('q') }}" placeholder="Szukaj ankiety po tytule..."
@@ -40,7 +56,7 @@
                     class="bg-violet-700 text-white rounded px-4 py-2 font-semibold hover:bg-violet-800 transition">Szukaj</button>
             </form>
 
-            <!-- Results -->
+
             <div class="bg-white rounded-xl shadow p-5">
                 @if ($surveys->count())
                     <ul class="divide-y">
