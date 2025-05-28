@@ -1,60 +1,64 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Survey;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
 class AdminQuestionController extends Controller
 {
-    // Strona-Lista pytań danej ankiety
-    public function index(Survey $survey)
+    public function create(Request $request)
     {
-        // zakładamy relację: $survey->questions()
-        return view('admin.questions.index', compact('survey'));
-    }
+        $survey_id = $request->get('survey_id');
+        $survey = Survey::findOrFail($survey_id);
 
-    // Formularz tworzenia
-    public function create(Survey $survey)
-    {
         return view('admin.questions.create', compact('survey'));
     }
 
-    // Zapis nowego pytania
-    public function store(Request $request, Survey $survey)
+    public function store(Request $request)
     {
-        $validated = $request->validate([
-            'question_text' => 'required|string|max:500',
-            'question_type' => 'required|in:text,single_choice,multiple_choice',
+        $data = $request->validate([
+            'survey_id' => 'required|exists:surveys,id',
+            'question_text' => 'required|string|max:255',
+            'question_type' => 'required|in:single,multiple,text',
         ]);
-        $survey->questions()->create($validated);
 
-        return redirect()->route('admin.surveys.questions.index', $survey)->with('success', 'Pytanie dodano!');
+        Question::create($data);
+
+        return redirect()->route('admin.surveys.edit', $data['survey_id'])
+                         ->with('success', 'Pytanie dodane!');
     }
 
-    // Formularz edycji
-    public function edit(Survey $survey, Question $question)
+    public function edit(Question $question)
     {
-        return view('admin.questions.edit', compact('survey', 'question'));
+        $question->load('answers', 'survey');
+        return view('admin.questions.edit', compact('question'));
     }
 
-    // Aktualizacja pytania
-    public function update(Request $request, Survey $survey, Question $question)
+    public function update(Request $request, Question $question)
     {
         $validated = $request->validate([
-            'question_text' => 'required|string|max:500',
-            'question_type' => 'required|in:text,single_choice,multiple_choice',
+            'question_text' => 'required|string|max:255',
+            'question_type' => 'required|in:single,multiple,text'
         ]);
         $question->update($validated);
-
-        return redirect()->route('admin.surveys.questions.index', $survey)->with('success', 'Pytanie zaktualizowano!');
+        return redirect()->back()->with('success', 'Pytanie zaktualizowane.');
     }
 
-    // Usuwanie pytania
-    public function destroy(Survey $survey, Question $question)
+    public function destroy(Question $question)
     {
+        $survey = $question->survey;
+        if ($survey->questions()->count() <= 1) {
+            return redirect()
+                ->route('admin.surveys.edit', $survey->id)
+                ->with('error', 'Nie możesz usunąć ostatniego pytania w ankiecie!');
+        }
         $question->delete();
-        return redirect()->route('admin.surveys.questions.index', $survey)->with('success', 'Pytanie usunięto!');
+
+        return redirect()
+            ->route('admin.surveys.edit', $survey->id)
+            ->with('success', 'Pytanie usunięte!');
     }
 }

@@ -12,14 +12,10 @@
 
         <div class="mb-6 flex justify-end">
             <a href="{{ route('admin.surveys') }}"
-               class="inline-flex items-center bg-violet-700 hover:bg-violet-900 text-white px-4 py-2 rounded font-semibold shadow transition">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2"
-                     viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
-                   d="M4.75 7.75A2.25 2.25 0 017 5.5h10a2.25 2.25 0 012.25 2.25v10A2.25 2.25 0 0117 19.5H7a2.25 2.25 0 01-2.25-2.25v-10z"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8m-8 4h5"/>
-                </svg>
-                Przejdź do panelu ankiet
-            </a>
+            class="inline-flex items-center bg-violet-700 hover:bg-violet-900 text-white px-4 py-2 rounded font-semibold shadow transition">
+            <img src="{{ asset('survey_created.png') }}" alt="Panel ankiet" class="w-8 h-8 object-contain" />
+               Przejdź do panelu ankiet
+         </a>
         </div>
 
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

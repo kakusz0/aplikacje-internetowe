@@ -12,12 +12,8 @@
             <div class="mb-6 flex justify-end">
                 <a href="{{ route('admin.users') }}"
                    class="inline-flex items-center bg-violet-700 hover:bg-violet-900 text-white px-4 py-2 rounded font-semibold shadow transition">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2"
-                         viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m13-5V7a4 4 0 00-2.68-3.85A4 4 0 0012 2a4 4 0 00-3.32 1.15A4 4 0 006 7v2m13 0a4 4 0 00-3-3.87M9 10a4 4 0 00-3 3.87" />
-                    </svg>
-                    Panel użytkowników
+                   <img src="{{ asset('administrator.png') }}" alt="Panel administratora" class="w-8 h-8 object-contain" />
+                      Panel użytkowników
                 </a>
             </div>
         @endif

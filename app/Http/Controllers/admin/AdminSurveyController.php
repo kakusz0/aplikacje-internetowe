@@ -19,6 +19,7 @@ class AdminSurveyController extends Controller
         return back()->with('success', 'Ankieta usunięta.');
     }
     public function edit(Survey $survey) {
+        $survey->load('questions');
         return view('admin.surveys.edit', compact('survey'));
     }
     public function update(Request $request, Survey $survey) {

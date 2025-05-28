@@ -51,11 +51,7 @@
             <div class="italic text-gray-500 mb-3">Brak pytań - dodaj pierwsze pytanie!</div>
         @endforelse
 
-        {{-- Przycisk dodania nowego pytania --}}
-        <a href="{{ route('admin.questions.create', ['survey_id' => $survey->id]) }}"
-           class="inline-block mt-2 bg-violet-700 hover:bg-violet-900 text-white px-4 py-2 rounded font-semibold text-sm transition">
-            Dodaj pytanie
-        </a>
+
     </div>
 </div>
 @endsection

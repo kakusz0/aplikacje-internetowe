@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
             'password'      => bcrypt('admin'),
             'is_admin'      => true,
         ]);
-        // uzytkownicy
+ 
         User::factory(20)->create();
 
-        // ankiety i pytania
+    
         $questions = [
             "Jaki jest Twój ulubiony kolor?" => ['Czerwony', 'Niebieski'],
             "Jak często uprawiasz sport?"    => ['Codziennie', 'Nigdy'],
@@ -43,14 +43,14 @@ class DatabaseSeeder extends Seeder
                 'is_named'   => false
             ]);
 
-            // jedno pytanie
+        
             $question = $survey->questions()->create([
                 'question_text'  => $survey->title,
                 'question_type'  => 'single',
                 'question_order' => 1,
             ]);
 
-            // kilka pytan
+    
             foreach ($questions[$pickedTitle] as $k => $opt) {
                 $question->options()->create([
                     'option_text'  => $opt,

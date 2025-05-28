@@ -51,7 +51,7 @@ class Survey extends Model
         return $this->hasMany(Respondent::class);
     }
 
-    // Domyślny klucz do routingów (np. w route model binding)
+
     public function getRouteKeyName()
     {
         return 'uuid';

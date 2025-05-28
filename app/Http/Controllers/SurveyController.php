@@ -132,7 +132,7 @@ class SurveyController extends Controller
         $stats = $this->getStatistics($survey, $question);
 
         return redirect()
-            ->route('surveys.statistics', [$survey->uuid]) // <-- musisz mieć taką trasę
+            ->route('surveys.statistics', [$survey->uuid]) 
             ->with('success', 'Dziękujemy za odpowiedź!');
     }
 
@@ -168,9 +168,9 @@ class SurveyController extends Controller
 
     public function index(Request $request)
     {
-        $q = $request->input('q'); // tekst z inputa
+        $q = $request->input('q');
 
-        // Szukaj po tytule
+     
         $surveys = \App\Models\Survey::when($q, function ($query) use ($q) {
             $query->where('title', 'like', "%{$q}%");
         })
@@ -183,7 +183,7 @@ class SurveyController extends Controller
 
     public function votes(Survey $survey)
     {
-        // Załaduj respondentów oraz odpowiedzi
+ 
         $respondents = $survey->respondents()
             ->with(['user', 'answers.answerOptions.option'])
             ->get();

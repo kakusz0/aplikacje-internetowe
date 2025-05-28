@@ -11,7 +11,7 @@ class QuestionFactory extends Factory
     {
         return [
             'survey_id'     => Survey::inRandomOrder()->first()->id ?? 1,
-            'question_text' => 'To samo co tytuł ankiety', // będzie nadpisane w seederze
+            'question_text' => 'To samo co tytuł ankiety',
             'question_type' => 'single',
             'question_order'=> 1,
         ];
