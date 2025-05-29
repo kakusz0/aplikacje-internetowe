@@ -44,7 +44,7 @@
             <a href="{{ route('admin.surveys.edit', $question->survey) }}" class="ml-2 underline">Anuluj</a>
         </form>
 
-   
+
         @if ($question->question_type !== 'text')
             <hr class="my-6">
             <div>
@@ -53,8 +53,11 @@
                 <form action="{{ route('admin.options.store') }}" method="POST" class="mb-4 flex gap-2">
                     @csrf
                     <input type="hidden" name="question_id" value="{{ $question->id }}">
-                    <input type="text" name="option_text" required placeholder="Opcja" value="{{ old('option_text') }}"
+                    <input type="text" name="option_text" required maxlength="255" value="{{ old('option_text') }}"
                         class="border px-2 py-1 rounded w-full">
+                    @if ($errors->has('option_text'))
+                        <p class="text-red-600 text-sm mt-1">{{ $errors->first('option_text') }}</p>
+                    @endif
                     <input type="number" name="option_order" min="1" placeholder="Kolejność"
                         value="{{ old('option_order') }}" class="border px-2 py-1 rounded w-32">
                     <button type="submit" class="bg-violet-800 text-white px-3 py-1 rounded text-xs font-semibold">Dodaj
@@ -63,17 +66,17 @@
 
                 @forelse ($question->options as $option)
                     <div class="bg-gray-100 rounded p-3 mb-2 flex justify-between items-center">
-                        <form action="{{ route('admin.options.update', $option) }}" method="POST"
-                            class="flex gap-2 w-full" id="add-option-form" >
+                        <form action="{{ route('admin.options.update', $option) }}" method="POST" class="flex gap-2 w-full"
+                            id="add-option-form">
                             @csrf @method('PUT')
-                            <input type="text" name="option_text" required
-                                value="{{ old('option_text', $option->option_text) }}"
+                            <input type="text" name="option_text" required maxlength="255" value="{{ $option->option_text }}"
                                 class="border px-2 py-1 rounded w-full">
+                
                             <input type="number" name="option_order" min="1"
                                 value="{{ old('option_order', $option->option_order) }}"
                                 class="border px-2 py-1 rounded w-28">
                             <button type="submit"
-                                class="bg-blue-600 text-white px-3 py-1 rounded text-xs font-semibold" >Zapisz</button>
+                                class="bg-blue-600 text-white px-3 py-1 rounded text-xs font-semibold">Zapisz</button>
                         </form>
                         <form action="{{ route('admin.options.destroy', $option) }}" method="POST" class="ml-2"
                             onsubmit="return confirm('Usunąć tę opcję?');">

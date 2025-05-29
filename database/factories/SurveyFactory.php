@@ -17,12 +17,11 @@ class SurveyFactory extends Factory
             "Czy pracujesz zdalnie?",
             "Czy masz zwierzęta domowe?"
         ];
-        $faker = Factory::create('pl_PL');
+ 
         return [
-            'user_id'    => User::inRandomOrder()->first()->id ?? 1,
             'uuid'       => Str::uuid(),
-            'title'      => $faker->randomElement($questions),
-            'description'=> $faker->sentence(),
+            'title' => $this->faker->randomElement($questions),
+            'description'=> $this->faker->sentence(),
             'is_public'  => true,
             'is_named'   => false,
             'expires_at' => null,

@@ -15,26 +15,29 @@ class AdminOptionController extends Controller
             'question_id' => 'required|integer|exists:questions,id',
             'option_text' => 'required|string|max:255',
             'option_order' => 'nullable|integer',
+        ], [
+            'option_text.max' => 'Przekroczyłeś 255 znaków! Wpisz mniej znaków.'
         ]);
-
+    
         if (empty($validated['option_order'])) {
-      
             $max = Option::where('question_id', $validated['question_id'])->max('option_order');
             $validated['option_order'] = $max ? $max + 1 : 1;
         }
         Option::create($validated);
-
+    
         return back()->with('success', 'Opcja dodana.');
     }
-
+    
     public function update(Request $request, Option $option)
     {
         $validated = $request->validate([
-            'option_text' => 'required|string|max:255',
+            'option_text' => 'required|string|max:60',
             'option_order' => 'nullable|integer',
+        ], [
+            'option_text.max' => 'Przekroczyłeś 60 znaków! Wpisz mniej znaków.'
         ]);
         $option->update($validated);
-
+    
         return back()->with('success', 'Opcja zaktualizowana.');
     }
 

@@ -17,7 +17,7 @@ class OptionFactory extends Factory
             ['Tak', 'Nie'] 
         ];
         return [
-            'question_id'   => Question::inRandomOrder()->first()->id ?? 1,
+
             'option_text'   => $this->faker->randomElement(['Tak', 'Nie']), 
             'option_order'  => 1,
         ];

@@ -12,17 +12,22 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        User::factory()->create([
+   
+        User::create([
             'first_name'    => 'Admin',
             'last_name'     => 'Główny',
             'email'         => 'admin@admin.pl',
             'password'      => bcrypt('admin'),
             'is_admin'      => true,
         ]);
- 
-        User::factory(20)->create();
-
     
+   
+        User::factory(20)->create();
+    
+      
+        $userIds = User::pluck('id')->all();
+    
+      
         $questions = [
             "Jaki jest Twój ulubiony kolor?" => ['Czerwony', 'Niebieski'],
             "Jak często uprawiasz sport?"    => ['Codziennie', 'Nigdy'],
@@ -30,27 +35,31 @@ class DatabaseSeeder extends Seeder
             "Czy pracujesz zdalnie?"         => ['Tak', 'Nie'],
             "Czy masz zwierzęta domowe?"     => ['Tak', 'Nie'],
         ];
-
+    
         foreach (range(1, 10) as $i) {
-            $user = User::inRandomOrder()->first();
-            $pickedTitle = array_rand($questions);
+          
+            $userId = $userIds[array_rand($userIds)];
+         
+            $pickedTitle = array_rand($questions); 
+    
+            
             $survey = Survey::create([
-                'user_id'    => $user->id,
-                'uuid'       => \Illuminate\Support\Str::uuid(),
-                'title'      => $pickedTitle,
-                'description'=> 'Ankieta testowa',
-                'is_public'  => true,
-                'is_named'   => false
+                'user_id'     => $userId,
+                'uuid'        => \Illuminate\Support\Str::uuid(),
+                'title'       => $pickedTitle,
+                'description' => 'Ankieta testowa',
+                'is_public'   => true,
+                'is_named'    => false
             ]);
-
-        
+    
+       
             $question = $survey->questions()->create([
                 'question_text'  => $survey->title,
                 'question_type'  => 'single',
                 'question_order' => 1,
             ]);
-
     
+   
             foreach ($questions[$pickedTitle] as $k => $opt) {
                 $question->options()->create([
                     'option_text'  => $opt,

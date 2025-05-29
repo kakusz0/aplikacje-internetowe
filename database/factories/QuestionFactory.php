@@ -10,7 +10,6 @@ class QuestionFactory extends Factory
     public function definition(): array
     {
         return [
-            'survey_id'     => Survey::inRandomOrder()->first()->id ?? 1,
             'question_text' => 'To samo co tytuł ankiety',
             'question_type' => 'single',
             'question_order'=> 1,
