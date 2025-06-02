@@ -1,6 +1,14 @@
 @echo off
 setlocal
 
+:: 1. Plik .env
+IF NOT EXIST ".env" (
+    echo Tworzenie pliku .env...
+    copy .env.example .env
+) ELSE (
+    echo Plik .env juz istnieje.
+)
+
 REM Krok 1: Composer install
 echo [1/4] composer install
 start /wait cmd /c "composer install"
