@@ -116,4 +116,7 @@ Route::middleware(['auth', IsAdmin::class])
     Route::post('options', [AdminOptionController::class, 'store'])->name('options.store');
     Route::put('options/{option}', [AdminOptionController::class, 'update'])->name('options.update');
     Route::delete('options/{option}', [AdminOptionController::class, 'destroy'])->name('options.destroy');
+
+    Route::post('/options/reorder/{question}', [AdminOptionController::class, 'reorder'])
+     ->name('options.reorder');
 });

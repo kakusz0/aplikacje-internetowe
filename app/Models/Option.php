@@ -20,6 +20,10 @@ class Option extends Model
         return $this->belongsTo(Question::class);
     }
 
+    public function survey()
+    {
+        return $this->belongsTo(Survey::class);
+    }
     public function answerOptions()
     {
         return $this->hasMany(AnswerOption::class);

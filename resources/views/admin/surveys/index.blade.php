@@ -3,11 +3,8 @@
     <div class="max-w-6xl mx-auto mt-10 px-2">
         <h1 class="text-2xl font-bold text-violet-800 mb-4">Ankiety</h1>
 
-        @if(session('success'))
-            <div class="bg-emerald-100 text-emerald-900 p-2 rounded mb-3">{{ session('success') }}</div>
-        @endif
 
-        {{-- Przycisk do panelu użytkowników (tylko dla admina) --}}
+   
         @if(auth()->check()&&auth()->user()->is_admin)
             <div class="mb-6 flex justify-end">
                 <a href="{{ route('admin.users') }}"

@@ -37,13 +37,17 @@ class AdminQuestionController extends Controller
         return view('admin.questions.edit', compact('question'));
     }
 
-    public function update(Request $request, Question $question)
+    public function update(Request $request, Question $question, Survey $survey)
     {
+        $validated2 = $request->validate([
+            'title' => 'required|string|max:255',
+        ]);
         $validated = $request->validate([
             'question_text' => 'required|string|max:255',
             'question_type' => 'required|in:single,multiple,text'
         ]);
         $question->update($validated);
+        $survey->update($validated2);
         return redirect()->back()->with('success', 'Pytanie zaktualizowane.');
     }
 

@@ -6,15 +6,19 @@
     <form method="POST" action="">
         @csrf
         <div class="mb-4">
+            @php
+                $sortedOptions = $question->options->sortBy('option_order');
+            @endphp
+
             @if($question->question_type == 'single')
-                @foreach($question->options as $opt)
+                @foreach($sortedOptions as $opt)
                     <label class="block mb-1">
                         <input type="radio" name="answer" value="{{ $opt->id }}" required>
                         {{ $opt->option_text }}
                     </label>
                 @endforeach
             @else
-                @foreach($question->options as $opt)
+                @foreach($sortedOptions as $opt)
                     <label class="block mb-1">
                         <input type="checkbox" name="answer[]" value="{{ $opt->id }}">
                         {{ $opt->option_text }}

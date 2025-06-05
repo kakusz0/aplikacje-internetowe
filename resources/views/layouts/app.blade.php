@@ -97,8 +97,35 @@
         @yield('content')
     </main>
 
+    @if (session('success'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3500)" x-show="show" x-transition.duration.400ms
+            class="fixed bottom-6 right-6 max-w-md flex items-start gap-2 px-6 py-4 border-l-4 border-green-600 shadow-2xl rounded-lg bg-gradient-to-br from-green-500 via-green-600 to-green-700 text-white z-[9999]"
+            style="display: none;" role="alert">
+          
+            <img src="{{ asset('success.png') }}" alt="Sukces">
+            <div class="pl-2 font-medium text-white drop-shadow">
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
 
+    @if (session('error'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4500)" x-show="show" x-transition.duration.400ms
+            class="fixed bottom-6 right-6 max-w-md flex items-start gap-2 px-6 py-4 border-l-4 border-red-600 shadow-2xl rounded-lg bg-gradient-to-br from-red-500 via-red-600 to-red-700 text-white z-[9999]"
+            style="display: none;" role="alert">
+       
+            <img src="{{ asset('error.png') }}" alt="Błąd">
+            <div class="pl-2 font-medium text-white drop-shadow">
+                {{ session('error') }}
+            </div>
+        </div>
+    @endif
     <script src="//unpkg.com/alpinejs" defer></script>
+
+    <!-- SweetAlert2 via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 </body>
 
 </html>

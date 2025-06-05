@@ -23,7 +23,7 @@
         <a href="{{ route('admin.surveys.edit', $question->survey_id) }}" class="ml-2 underline">Anuluj</a>
     </form>
 
-    {{-- Lista odpowiedzi --}}
+
     @if($question->question_type !== 'text')
     <hr class="my-6">
     <div>
@@ -46,7 +46,7 @@
             <div class="italic text-gray-500 mb-3">Brak odpowiedzi. Dodaj poniżej.</div>
         @endforelse
 
-        {{-- Dodawanie odpowiedzi --}}
+ 
         <form action="{{ route('admin.answers.store') }}" method="POST" class="mt-4 flex gap-2">
             @csrf
             <input type="hidden" name="question_id" value="{{ $question->id }}">

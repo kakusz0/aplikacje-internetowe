@@ -27,7 +27,7 @@
 
     <hr class="my-6">
 
-    {{-- Lista pytań w ankiecie --}}
+
     <div>
         <h2 class="font-semibold mb-3 text-lg">Pytania w ankiecie</h2>
         @forelse($survey->questions as $question)
